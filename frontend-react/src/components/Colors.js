@@ -9,7 +9,7 @@ const Colors = (props) => {
 
   return (
     <>
-      <h1 style={textColorStyle}>Värviiiiid</h1>
+      <h1 style={textColorStyle}>Värv</h1>
     </>
   );
   

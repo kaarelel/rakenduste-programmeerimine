@@ -1,52 +1,47 @@
-import { useState } from "react"
-import './App.css';
-import Fun from './components/Fun';
-import Greeting from './components/Greeting';
-import Squared from './components/Squared';
-import Colors from './components/Colors';
+
+import { BrowserRouter, Route, Switch} from "react-router-dom";
+import './components/App.css'
+import React, { useState } from 'react';
+
+import Posts from "./pages/Posts";
+import Header from "./components/Header";
+import Login from "./components/Login";
+import Register from "./components/Register";
+import StateExample from "./components/UseStateExamp";
+import { Layout } from 'antd';
+import ShowMagic from "./components/ShowMagic";
+
 
 function App() {
-  const [magicNumber, setMagicNumber] = useState(0)
-  const [show, setShow] = useState(true)
-
-  return (
-    <div className="App">
-      { show && <h1>{ magicNumber }</h1> }
-      <Fun 
-        magicNumber={magicNumber} 
-        setMagicNumber={setMagicNumber}
-        show={show}
-        setShow={setShow}
-      />
-      <Fun 
-        magicNumber={magicNumber} 
-        setMagicNumber={setMagicNumber} 
-        amount={5}
-        show={show}
-        setShow={setShow}
-      />
-      <Fun 
-        magicNumber={magicNumber} 
-        setMagicNumber={setMagicNumber} 
-        amount={25}
-        show={show}
-        setShow={setShow}
-      />
-      <hr />
-      <Greeting name="Kaarel"/>
-      {/* Kodutöö osa */}
-      <hr />
-      <Squared type="Ruutu"/>
-      <Colors textColor="brown" />
-      <Colors textColor="green" />
-      <Colors textColor="blue" />
-      <Colors textColor="yellow" />
-      <Colors textColor="violet" />
-      <hr />
+    const [user, setUser] = useState();
+    const {Content} = Layout;
 
 
+    return (
+    <div>
+        {/* <h1>Some text</h1> */}
+        <BrowserRouter>
+            <Header user={user} />
+            <Layout className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>
+            <div className="site-layout-background" style={{  padding: 24, minHeight:"calc(100vh - 200px)" }}>
+            <Content style={{ padding: '0 24px' }}>
+                <Switch>
+                    <Route exact path="/">
+                        <Posts user={user}/>
+                    </Route>
+                    <Route exact path="/login"  >
+                        <Login setUser={setUser} />
+                    </Route>
+                    <Route exact path="/register" component={Register} />
+                    <Route exact path="/ex" component={StateExample} />
+                    <Route exact path="/sm" component={ShowMagic} />
+                </Switch>
+            </Content>
+            </div>
+            </Layout>
+        </BrowserRouter>
     </div>
-  );
+    );
 }
 
 export default App;

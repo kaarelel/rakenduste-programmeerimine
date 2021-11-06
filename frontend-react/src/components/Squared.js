@@ -8,9 +8,9 @@ const Squared = () => {
   return (
     <>
       {calc ?
-        <h1> Mdea, võtab arvu ruutu </h1>
+        <h1> Võtab arvu ruutu </h1>
         :
-        <h1>Mdea, võtab arvu ruutjuure </h1>
+        <h1>Võtab arvu ruutjuure </h1>
         }
       <h1>Result: {result}</h1>
       <input 
